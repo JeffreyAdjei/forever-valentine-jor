@@ -1,7 +1,28 @@
+import { useRef, useState } from 'react'
 import { useInView } from './useInView'
 
 export default function BehindScenes() {
   const { ref, isVisible } = useInView(0.15)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [paused, setPaused] = useState(false)
+
+  const togglePlay = () => {
+    const v = videoRef.current
+    if (!v) return
+    if (v.paused) {
+      v.play()
+      setPaused(false)
+    } else {
+      v.pause()
+      setPaused(true)
+    }
+  }
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    const v = videoRef.current
+    if (v) v.muted = !v.muted
+  }
 
   return (
     <section className="relative py-24 sm:py-32 px-4">
@@ -39,49 +60,52 @@ export default function BehindScenes() {
               : 'opacity-0 translate-y-6'
           }`}
         >
-          <div className="rounded-2xl overflow-hidden shadow-md mx-auto group" style={{ maxWidth: '320px' }}>
-            <div className="relative bg-linear-to-br from-valentine/6 to-blush/40" style={{ aspectRatio: '9 / 16' }}>
+          <div
+            className="rounded-2xl overflow-hidden shadow-md mx-auto group relative cursor-pointer"
+            style={{ maxWidth: '320px' }}
+            onClick={togglePlay}
+          >
+            <div
+              className="relative bg-linear-to-br from-valentine/6 to-blush/40"
+              style={{ aspectRatio: '9 / 16' }}
+            >
               <video
+                ref={videoRef}
                 className="w-full h-full object-cover"
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="auto"
               >
-                <source src="/videos/jorvideo.MOV" type="video/mp4" />
+                <source src="/videos/jorvideo.mp4" type="video/mp4" />
               </video>
 
-              {/* Slim control bar — visible on hover */}
-              <div className="absolute bottom-0 left-0 right-0 flex items-center gap-3 px-3 py-2 bg-black/30 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button
-                  className="text-white/80 hover:text-white transition-colors cursor-pointer"
-                  aria-label="Play / Pause"
-                  onClick={(e) => {
-                    const video = (e.currentTarget.closest('.group') as HTMLElement)?.querySelector('video')
-                    if (video) {
-                      if (video.paused) video.play()
-                      else video.pause()
-                    }
-                  }}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </button>
-
-                <button
-                  className="text-white/80 hover:text-white transition-colors cursor-pointer"
-                  aria-label="Mute / Unmute"
-                  onClick={(e) => {
-                    const video = (e.currentTarget.closest('.group') as HTMLElement)?.querySelector('video')
-                    if (video) video.muted = !video.muted
-                  }}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.49 4.49 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z" />
-                  </svg>
-                </button>
+              {/* Centered glass play/pause button — visible on hover */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center shadow-lg">
+                  {paused ? (
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  ) : (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                      <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                    </svg>
+                  )}
+                </div>
               </div>
+
+              {/* Small mute button — bottom right corner on hover */}
+              <button
+                className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                aria-label="Mute / Unmute"
+                onClick={toggleMute}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.49 4.49 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>

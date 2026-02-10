@@ -124,10 +124,3 @@ audio::-webkit-media-controls-panel {
   background: linear-gradient(to right, var(--color-cream), var(--color-blush));
 }
 
-/* Code block styling */
-.dev-wink {
-  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-  font-size: 0.8rem;
-  line-height: 1.7;
-  letter-spacing: 0.02em;
-}

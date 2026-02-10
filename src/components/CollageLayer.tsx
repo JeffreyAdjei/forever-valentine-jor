@@ -146,6 +146,7 @@ export default function CollageLayer() {
               alt=""
               className="w-full h-auto rounded-md object-cover"
               loading="lazy"
+              decoding="async"
               onError={(e) => {
                 const target = e.currentTarget
                 target.style.display = 'none'
