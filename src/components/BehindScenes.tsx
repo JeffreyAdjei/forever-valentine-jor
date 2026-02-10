@@ -78,7 +78,7 @@ export default function BehindScenes() {
                 playsInline
                 preload="auto"
               >
-                <source src="/videos/jorvideo.mp4" type="video/mp4" />
+                <source src="/videos/jorvideo.MOV" type="video/mp4" />
               </video>
 
               {/* Centered glass play/pause button — visible on hover */}
