@@ -8,14 +8,14 @@ interface Song {
 
 const songs: Song[] = [
   {
-    title: 'The Way I See You, My Jor',
-    caption: 'Wrote this trying to put you into words.',
-    src: '/audio/song1.mp3',
-  },
-  {
-    title: 'Still Here, My Jor',
+    title: 'Still Here, Jor',
     caption: 'Written from my heart.',
     src: '/audio/song2.mp3',
+  },
+  {
+    title: 'The Way I See You, Jor',
+    caption: 'Wrote this trying to put you into words.',
+    src: '/audio/song1.mp3',
   },
 ]
 
@@ -61,6 +61,15 @@ function SongCard({ song, index }: { song: Song; index: number }) {
           <source src={song.src} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
+
+        {/* Download button */}
+        <a
+          href={song.src}
+          download
+          className="inline-block mt-4 px-4 py-2 text-sm font-light tracking-wider text-valentine-dark/70 border border-valentine-muted/40 rounded-xl hover:bg-valentine-muted/10 transition-all duration-300"
+        >
+          Download
+        </a>
       </div>
     </div>
   )

@@ -44,11 +44,11 @@ export default function BehindScenes() {
           </div>
 
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-valentine-dark tracking-wide mb-4">
-            Us
+            Memories
           </h2>
 
           <p className="font-serif text-base sm:text-lg text-valentine-dark/60 font-light italic leading-relaxed">
-            Little moments I kept — I just love spending time with you.
+            Little moments I kept — every moment with you was a blessing.
           </p>
         </div>
 
@@ -81,8 +81,8 @@ export default function BehindScenes() {
                 <source src="/videos/jorvideo.mp4" type="video/mp4" />
               </video>
 
-              {/* Centered glass play/pause button — visible on hover */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {/* Centered glass play/pause button — always visible on mobile, hover on desktop */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                 <div className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center shadow-lg">
                   {paused ? (
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
@@ -98,7 +98,7 @@ export default function BehindScenes() {
 
               {/* Small mute button — bottom right corner on hover */}
               <button
-                className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
                 aria-label="Mute / Unmute"
                 onClick={toggleMute}
               >
@@ -119,7 +119,7 @@ export default function BehindScenes() {
           }`}
         >
           <p className="text-center font-serif text-xl sm:text-2xl text-valentine-dark/80 font-light italic leading-relaxed">
-            1 Corinthians 13:4–7
+            Isaiah 64:4
           </p>
         </div>
       </div>

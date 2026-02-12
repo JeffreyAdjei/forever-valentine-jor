@@ -52,9 +52,7 @@ export default function Footer() {
               : 'opacity-0 translate-y-4'
           }`}
         >
-          Happy Valentine's Day,
-          <br />
-          <span className="italic">my queen.</span>
+          &ldquo;Not just what it&rsquo;s meant to be, but how it&rsquo;s meant to be&hellip;&rdquo;
         </p>
 
         {/* Signature */}
@@ -71,14 +69,27 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Forever yours */}
+        {/* Blessing text */}
+        <div
+          className={`mt-16 transition-all duration-1000 delay-900 ${
+            isVisible ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <p className="font-serif text-lg sm:text-xl font-semibold italic text-valentine-dark/80 leading-relaxed">
+            Whenever it feels right,
+            <br />
+            It will be a blessing to have you as my friend.
+          </p>
+        </div>
+
+        {/* I SEE YOU AND I UNDERSTAND. */}
         <div
           className={`mt-20 transition-all duration-1000 delay-1000 ${
             isVisible ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <p className="text-valentine-dark/40 text-xs tracking-[0.25em] uppercase font-light">
-            Forever yours
+          <p className="text-valentine-dark/70 text-xs tracking-[0.25em] uppercase font-light">
+            I SEE YOU AND I UNDERSTAND.
           </p>
         </div>
 
@@ -92,10 +103,10 @@ export default function Footer() {
             <div className="w-8 h-px bg-valentine-muted/20" />
           </div>
           <p className="font-serif text-sm sm:text-base text-valentine-dark/40 font-light italic leading-relaxed">
-            &ldquo;Commit your way to the Lord; trust in Him, and He will act.&rdquo;
+            &ldquo;Trust in the Lord with all your heart and lean not on your own understanding; in all your ways acknowledge Him, and He shall direct your paths.&rdquo;
           </p>
           <p className="mt-2 text-valentine-dark/30 text-xs tracking-wide font-light">
-            — Psalm 37:5
+            — Proverbs 3:5–6
           </p>
         </div>
       </div>

@@ -11,7 +11,25 @@
       "Bash(git init:*)",
       "Bash(gh repo create:*)",
       "Bash(git remote add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git config:*)",
+      "Bash(gh auth:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(gh api:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(avconvert:*)",
+      "Bash(for f in jor3.JPG jor5.JPG jor7.JPG jor8.JPG jor9.JPG jor10.JPG)",
+      "Bash(do sips:*)",
+      "Bash(done)",
+      "Bash(npx vite build:*)",
+      "Bash(git -c user.name=\"Jeffrey Adjei\" -c user.email=\"jefferyadjei3@gmail.com\" commit -m \"$\\(cat <<''EOF''\nOptimize video, images, and UI — glass play button, faster loading\n\n- Convert 48MB MOV to 1.9MB web-optimized MP4 for smooth streaming\n- Compress large photos \\(26MB → 3.2MB total\\)\n- Redesign video player with centered Apple-style glass play/pause on hover\n- Add mute toggle button on hover\n- Video autoplays on loop, muted by default\n- Add async image decoding and video preload hints\n- Remove unused dev-wink CSS\n- Change song caption to \"Written from my heart.\"\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -c user.name=\"Jeffrey Adjei\" -c user.email=\"jefferyadjei3@gmail.com\" commit -m \"$\\(cat <<''EOF''\nRestore original quality video \\(jorvideo.MOV\\)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(brew list:*)",
+      "Bash(brew install:*)",
+      "Bash(git -c user.name=\"Jeffrey Adjei\" -c user.email=\"jefferyadjei3@gmail.com\" commit -m \"$\\(cat <<''EOF''\nHigh-quality MP4 conversion with fast-start streaming\n\n- Re-encoded with ffmpeg CRF 18 \\(near visually lossless\\)\n- faststart flag moves metadata to front for instant playback\n- H.264 + AAC for universal browser support\n- 48MB MOV → 37MB MP4, quality preserved\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(find:*)"
     ]
   }
 }

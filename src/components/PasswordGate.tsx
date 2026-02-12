@@ -11,7 +11,7 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (password === '191125') {
+    if (password === '030604') {
       onUnlock()
     } else {
       setError(true)
@@ -71,7 +71,7 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
         </div>
 
         <h1 className="text-center font-serif text-2xl font-light text-white mb-2 tracking-wide">
-          Forever Valentine
+          Our Time Capsule
         </h1>
         <p className="text-center text-white/60 text-sm mb-8 font-light">
           This is for your eyes only.
@@ -106,9 +106,6 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
           </button>
         </form>
 
-        <p className="text-center text-white/30 text-xs mt-6 font-light">
-          A hint: our beginning.
-        </p>
       </div>
 
       <style>{`
