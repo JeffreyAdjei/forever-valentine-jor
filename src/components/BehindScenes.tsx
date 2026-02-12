@@ -1,14 +1,27 @@
-import { useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useInView } from './useInView'
 
 export default function BehindScenes() {
   const { ref, isVisible } = useInView(0.15)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [paused, setPaused] = useState(false)
+  const [controlsVisible, setControlsVisible] = useState(false)
+  const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const showControls = useCallback(() => {
+    setControlsVisible(true)
+    if (hideTimer.current) clearTimeout(hideTimer.current)
+    hideTimer.current = setTimeout(() => setControlsVisible(false), 2500)
+  }, [])
+
+  useEffect(() => {
+    return () => { if (hideTimer.current) clearTimeout(hideTimer.current) }
+  }, [])
 
   const togglePlay = () => {
     const v = videoRef.current
     if (!v) return
+    showControls()
     if (v.paused) {
       v.play()
       setPaused(false)
@@ -20,6 +33,7 @@ export default function BehindScenes() {
 
   const toggleMute = (e: React.MouseEvent) => {
     e.stopPropagation()
+    showControls()
     const v = videoRef.current
     if (v) v.muted = !v.muted
   }
@@ -81,8 +95,8 @@ export default function BehindScenes() {
                 <source src="/videos/jorvideo.mp4" type="video/mp4" />
               </video>
 
-              {/* Centered glass play/pause button — always visible on mobile, hover on desktop */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
+              {/* Centered glass play/pause button — tap to show on mobile, hover on desktop */}
+              <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${controlsVisible ? 'opacity-100' : 'opacity-0'} sm:opacity-0! sm:group-hover:opacity-100!`}>
                 <div className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center shadow-lg">
                   {paused ? (
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
@@ -98,7 +112,7 @@ export default function BehindScenes() {
 
               {/* Small mute button — bottom right corner on hover */}
               <button
-                className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                className={`absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center transition-opacity duration-300 cursor-pointer ${controlsVisible ? 'opacity-100' : 'opacity-0'} sm:opacity-0! sm:group-hover:opacity-100!`}
                 aria-label="Mute / Unmute"
                 onClick={toggleMute}
               >
