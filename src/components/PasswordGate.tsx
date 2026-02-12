@@ -74,7 +74,7 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
           Our Time Capsule
         </h1>
         <p className="text-center text-white/60 text-sm mb-8 font-light">
-          This is for your eyes only.
+          For your eyes only.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">

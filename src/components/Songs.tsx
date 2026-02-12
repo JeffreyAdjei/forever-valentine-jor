@@ -10,12 +10,12 @@ const songs: Song[] = [
   {
     title: 'Still Here, Jor',
     caption: 'Written from my heart.',
-    src: '/audio/song2.mp3',
+    src: '/audio/still-here-jor.mp3',
   },
   {
     title: 'The Way I See You, Jor',
     caption: 'Wrote this trying to put you into words.',
-    src: '/audio/song1.mp3',
+    src: '/audio/the-way-i-see-you-jor.mp3',
   },
 ]
 
@@ -65,7 +65,7 @@ function SongCard({ song, index }: { song: Song; index: number }) {
         {/* Download button */}
         <a
           href={song.src}
-          download
+          download={`${song.title}.mp3`}
           className="inline-block mt-4 px-4 py-2 text-sm font-light tracking-wider text-valentine-dark/70 border border-valentine-muted/40 rounded-xl hover:bg-valentine-muted/10 transition-all duration-300"
         >
           Download
