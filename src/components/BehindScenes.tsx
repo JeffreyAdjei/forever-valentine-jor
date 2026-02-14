@@ -1,12 +1,23 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useInView } from './useInView'
+import { useGlobalAudio } from './GlobalAudioPlayer'
 
 export default function BehindScenes() {
   const { ref, isVisible } = useInView(0.15)
+  const { pause: pauseAudio } = useGlobalAudio()
   const videoRef = useRef<HTMLVideoElement>(null)
   const [paused, setPaused] = useState(false)
   const [controlsVisible, setControlsVisible] = useState(false)
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // Clear CSS transform on video container after fade-in to avoid iOS Safari compositing issues
+  const [videoAnimDone, setVideoAnimDone] = useState(false)
+
+  useEffect(() => {
+    if (isVisible) {
+      const t = setTimeout(() => setVideoAnimDone(true), 1000)
+      return () => clearTimeout(t)
+    }
+  }, [isVisible])
 
   const showControls = useCallback(() => {
     setControlsVisible(true)
@@ -35,7 +46,10 @@ export default function BehindScenes() {
     e.stopPropagation()
     showControls()
     const v = videoRef.current
-    if (v) v.muted = !v.muted
+    if (!v) return
+    v.muted = !v.muted
+    // Pause song audio when video is unmuted to avoid overlap
+    if (!v.muted) pauseAudio()
   }
 
   return (
@@ -66,13 +80,14 @@ export default function BehindScenes() {
           </p>
         </div>
 
-        {/* Portrait video */}
+        {/* Portrait video — transform cleared after animation for iOS Safari stability */}
         <div
           className={`transition-all duration-700 delay-200 ${
             isVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-6'
           }`}
+          style={videoAnimDone ? { transform: 'none', translate: 'none' } : undefined}
         >
           <div
             className="rounded-2xl overflow-hidden shadow-md mx-auto group relative cursor-pointer"

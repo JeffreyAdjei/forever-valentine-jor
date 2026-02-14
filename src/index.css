@@ -119,8 +119,4 @@ body {
   z-index: 1;
 }
 
-/* Audio player styling */
-audio::-webkit-media-controls-panel {
-  background: linear-gradient(to right, var(--color-cream), var(--color-blush));
-}
 

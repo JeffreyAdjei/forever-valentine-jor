@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { GlobalAudioProvider } from './components/GlobalAudioPlayer'
 import PasswordGate from './components/PasswordGate'
 import CollageLayer from './components/CollageLayer'
 import Hero from './components/Hero'
@@ -14,35 +15,37 @@ export default function App() {
   }
 
   return (
-    <div className="relative min-h-screen bg-cream">
-      {/* Photo collage behind all content */}
-      <CollageLayer />
+    <GlobalAudioProvider>
+      <div className="relative min-h-screen bg-cream">
+        {/* Photo collage behind all content */}
+        <CollageLayer />
 
-      {/* Main content */}
-      <main className="relative z-10">
-        <Hero />
+        {/* Main content */}
+        <main className="relative z-10">
+          <Hero />
 
-        {/* Soft divider */}
-        <div className="flex justify-center">
-          <div className="w-px h-16 bg-linear-to-b from-valentine-muted/20 to-transparent" />
-        </div>
+          {/* Soft divider */}
+          <div className="flex justify-center">
+            <div className="w-px h-16 bg-linear-to-b from-valentine-muted/20 to-transparent" />
+          </div>
 
-        <Songs />
+          <Songs />
 
-        {/* Soft divider */}
-        <div className="flex justify-center">
-          <div className="w-px h-16 bg-linear-to-b from-valentine-muted/20 to-transparent" />
-        </div>
+          {/* Soft divider */}
+          <div className="flex justify-center">
+            <div className="w-px h-16 bg-linear-to-b from-valentine-muted/20 to-transparent" />
+          </div>
 
-        <BehindScenes />
+          <BehindScenes />
 
-        {/* Soft divider */}
-        <div className="flex justify-center">
-          <div className="w-px h-16 bg-linear-to-b from-valentine-muted/20 to-transparent" />
-        </div>
+          {/* Soft divider */}
+          <div className="flex justify-center">
+            <div className="w-px h-16 bg-linear-to-b from-valentine-muted/20 to-transparent" />
+          </div>
 
-        <Footer />
-      </main>
-    </div>
+          <Footer />
+        </main>
+      </div>
+    </GlobalAudioProvider>
   )
 }
